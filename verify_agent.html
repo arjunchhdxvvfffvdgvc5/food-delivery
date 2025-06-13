@@ -1,0 +1,77 @@
+{% extends "restaurants/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        padding-top: 100px; /* Adjusted to move table down slightly */
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: rgb(228, 224, 224);
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 100px; /* Adjust this value to move heading down */
+        color: #333;
+    }
+</style>
+
+{% if message %}
+<script>
+  alert("{{ message }}")
+</script>
+{% endif %}
+
+<h2>VERIFICATION</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Mobile No</th>
+            <th>Address</th>
+            <th>Approve</th>
+            <th>Reject</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in agent %}
+        <tr>
+            <td>{{ i.user.first_name }}</td>
+            <td>{{ i.user.username }}</td>
+            <td>{{ i.user.email }}</td>
+            <td>{{ i.mobile }}</td>
+            <td>{{ i.address }}</td>
+            <td><a href="agent_approve?id={{ i.user_id }}" class="btn btn-success">Approve</a></td>
+            <td><a href="agent_reject?id={{ i.user_id }}" class="btn btn-danger">Reject</a></td>
+
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No users found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

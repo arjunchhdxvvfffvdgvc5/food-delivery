@@ -1,0 +1,68 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+<div class="container add-emp">
+    <center><h1>Booking Details</h1></center>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="p-3 mb-2 bg-primary text-light">User Details</th>
+                <th class="p-3 mb-2 bg-primary text-light">Order Details</th>
+                <th class="p-3 mb-2 bg-primary text-light">Action</th> 
+                <th class="p-3 mb-2 bg-primary text-light">Feedback</th> 
+                <th class="p-3 mb-2 bg-primary text-light">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in pr %}
+            <tr>
+                <td>
+                    Name: {{ x.user.user.first_name }}<br>
+                    Email: {{ x.user.user.email }}<br>
+                    Phone: {{ x.user.mobile }}<br>
+                    Address: {{ x.user.address }}<br>
+                </td>
+                <td>
+                    <img src="{{ x.product.image.url }}" width="100px"><br>
+                    Name: {{ x.product.FoodName }}<br>
+                </td>
+                <td>
+                    <a href="cancel_product_order?id={{ x.id }}" class="btn btn-danger">Cancel</a>
+                </td>
+                <td>
+                    <a href="Add_feedback?id={{ x.id }}" class="btn btn-success">Feedback</a>
+                </td>
+                <td>
+                    {% with product_id=x.id %}
+                        {% for i in ps %}
+                            {% if i.user.id == x.id %}
+                                {% if i.status == 'pickup' %}
+                                    <span>Pickup</span>
+                                {% elif i.status == 'delivered' %}
+                                    <span>Delivered</span>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                </td>
+            </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No orders found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
