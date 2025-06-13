@@ -9,21 +9,13 @@ echo "Current directory: $(pwd)"
 echo "Installing dependencies..."
 pip install -r requirements.txt
 
-# Check if we're in the correct directory
-if [ -f "manage.py" ]; then
-    PROJECT_DIR="."
-elif [ -f "fooddelivery/manage.py" ]; then
-    PROJECT_DIR="fooddelivery"
-    cd "$PROJECT_DIR"
-    echo "Changed to project directory: $(pwd)"
-else
-    echo "Error: Could not find manage.py in current directory or fooddelivery/"
+# Check if manage.py exists in current directory
+if [ ! -f "manage.py" ]; then
+    echo "Error: manage.py not found in $(pwd)"
+    echo "Directory contents:"
+    ls -la
     exit 1
 fi
-
-# Collect static files
-echo "Collecting static files..."
-python manage.py collectstatic --no-input --clear
 
 # Database connection check (only on Render)
 if [ -n "$RENDER" ]; then
