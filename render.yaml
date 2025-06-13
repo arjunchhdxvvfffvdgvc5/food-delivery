@@ -3,7 +3,7 @@ services:
     name: food-delivery
     env: python
     buildCommand: ./build.sh
-    startCommand: gunicorn fooddelivery.wsgi:application
+    startCommand: cd fooddelivery && gunicorn fooddelivery.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
