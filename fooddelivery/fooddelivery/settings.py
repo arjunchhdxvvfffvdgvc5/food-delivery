@@ -77,12 +77,19 @@ WSGI_APPLICATION = 'fooddelivery.wsgi.application'
 import os
 import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'),
-        conn_max_age=600
-    )
-}
+# Database configuration
+db_from_env = dj_database_url.config(conn_max_age=600, default='')
+if db_from_env:
+    DATABASES = {
+        'default': db_from_env
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
