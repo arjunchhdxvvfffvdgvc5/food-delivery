@@ -1,0 +1,74 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        padding-top: 100px; /* Adjusted to move table down slightly */
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: rgb(228, 224, 224);
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 100px; /* Adjust this value to move heading down */
+        color: #333;
+    }
+</style>
+
+{% if message %}
+<script>
+  alert("{{ message }}")
+</script>
+{% endif %}
+
+<h2>FEEDBACK</h2>
+<br><br><br>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Rating</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in title %}
+        <tr>
+            <td>{{ i.user.user.first_name }}</td>
+            <td>{{ i.title }}</td>
+            <td>{{ i.description }}</td>
+            <td>{{ i.rating }}</td>
+             {% comment %} <td><a href="view_feedback?id={{ i.id }}" class="btn btn-danger">Feedback</a></td> {% endcomment %}
+
+
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No users found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,109 @@
+
+
+{% extends "delivery agents/base.html" %} {% load static %} 
+{% block css %}
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+  }
+  .container2 {
+      max-width: 400px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h2 {
+      text-align: center;
+  }
+  .form-group {
+      margin-bottom: 15px;
+  }
+  .form-group label {
+      display: block;
+      font-weight: bold;
+  }
+  .form-group input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+  .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border: none;
+  }
+  .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+  }
+</style>
+{% endblock css %}
+{% block content %}
+{% if message  %}
+<script>
+alert("{{message}}")
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Menu Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #28a745;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <br><br>  <br><br>
+  <br><br>
+
+  <h2 style="padding-top:50px;text-align:center;">AVALIABILITY STATUS</h2>
+  <form id="food-menu-form" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <select class="form-control" name="availability" required>
+      <option value="available">Available</option>
+      <option value="not_available">Not Available</option>
+    </select>
+
+    <button type="submit">UPDATE</button>
+    </form>
+</div>
+{% endblock %}

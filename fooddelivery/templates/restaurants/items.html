@@ -1,0 +1,49 @@
+{% extends "restaurants/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div style="display: flex; justify-content: center; padding: 20px; background-color: #f4f4f4; min-height: 100vh;">
+    <div style="max-width: 900px; width: 100%; padding: 30px; border: 5px solid #ddd; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); background: #fff; text-align: center;">
+        <br>  <br>  <br>  <br>  
+        <h1 style="font-size: 1.8em; color: #333; margin-bottom: 20px;">MENU DETAILS</h1>
+        
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Image</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Name</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Description</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Price</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Quantity</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in menu %}
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">
+                        <img style="max-width: 100px; max-height: 100px;" src="{{ i.image.url }}" alt="Product Image">
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ i.FoodName }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ i.description }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ i.price }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ i.quantity }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">
+                        <a href="UpdateProduct?id={{ i.id }}" class="btn btn-primary">Update</a>
+                        <a href="product_delete?id={{ i.id }}" class="btn btn-danger">Delete</a>
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="border: 1px solid #ddd; padding: 10px; text-align: center;">No products available at the moment.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<br><br><br><br>
+    <head>
+      {% load static %}
+        <meta charset="UTF-8">
+        <title>Restaurant</title>
+        <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+        <link rel="stylesheet" href="{% static "css/main.css" %}" media="screen" type="text/css" >
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "css/style-portfolio.css" %}">
+        <link rel="stylesheet" href="{% static "css/picto-foundry-food.css" %}" />
+        <link rel="stylesheet" href="{% static "css/jquery-ui.css" %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% static "css/font-awesome.min.css"  %}"rel="stylesheet">
+        <link rel="icon" href="{% static "favicon-1.ico" %}" type="image/x-icon" >
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="row">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav main-nav  clear navbar-right ">
+                            <li><a class="navactive color_animation" href="/">Home</a></li>
+                            <li><a class="color_animation" href="#story">ABOUT</a></li>
+                            <li><a class="color_animation" href="#pricing">PRICING</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle color_animation" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    REGISTER <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="register">USER</a></li>
+                                    <li><a href="restaurent_reg">RESTAURENT</a></li>
+                                    <li><a href="agent_reg">DELIVERY AGENT</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="color_animation" href="login">LOGIN</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+
+{% block content %}{% endblock content %}
+
+
+        <!-- ============ Footer Section  ============= -->
+
+
+
+      <script type="text/javascript" src="{% static "js/jquery-1.10.2.min.js" %}"> </script>
+      <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}" ></script>
+      <script type="text/javascript" src="{% static "js/jquery-1.10.2.js" %}"></script>     
+      <script type="text/javascript" src="{% static "js/jquery.mixitup.min.js" %}" ></script>
+      <script type="text/javascript" src="{% static "js/main.js" %}" ></script>
+
+  </body>
+</html>
