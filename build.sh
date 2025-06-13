@@ -4,18 +4,30 @@ set -o errexit
 
 # Print current directory for debugging
 echo "Current directory: $(pwd)"
+echo "Directory contents:"
+ls -la
+
+# Change to fooddelivery directory if it exists
+if [ -d "fooddelivery" ]; then
+    cd fooddelivery
+    echo "Changed to fooddelivery directory: $(pwd)
+Directory contents:"
+    ls -la
+fi
 
 # Install dependencies
 echo "Installing dependencies..."
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 
-# Check if manage.py exists in current directory
+# Check if manage.py exists
 if [ ! -f "manage.py" ]; then
     echo "Error: manage.py not found in $(pwd)"
-    echo "Directory contents:"
-    ls -la
     exit 1
 fi
+
+# Collect static files
+echo "Collecting static files..."
+python manage.py collectstatic --noinput --clear
 
 # Database connection check (only on Render)
 if [ -n "$RENDER" ]; then

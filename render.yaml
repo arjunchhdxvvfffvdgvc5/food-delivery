@@ -2,9 +2,9 @@ services:
   - type: web
     name: food-delivery
     env: python
-    buildCommand: cd fooddelivery && pip install -r ../requirements.txt && python manage.py collectstatic --noinput
+    buildCommand: ./build.sh
     startCommand: gunicorn fooddelivery.wsgi:application
-    workingDir: /opt/render/project/src/fooddelivery
+    workingDir: /opt/render/project/src
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
